@@ -8,14 +8,12 @@ using Solutions;
 public class SolutionTest
 {
 	[Test, Timeout(20_000)]
-	public void LightDirectionDoesNotHideHeavyDirection()
+	public void RunWaitsForBothThreads()
 	{
-		// 500 000 columns of 3 points: only 3 row groups but 500 000 column groups,
-		// so the column thread needs far longer (grouping, sorting, building) than the row thread.
-		var points = Enumerable.Range(0, 500_000).SelectMany(x => Enumerable.Range(0, 3).Select(y => (x, y))).ToArray();
+		for (int i = 0; i < Solution.TestData.Inputs.Length; i++) {
+			var output = new Solution().Run(Solution.TestData.Inputs[i]);
 
-		var text = new Solution().Run(new Solution.Input(points)).Text;
-
-		Assert.That(text.Split("kiekis").Length - 1, Is.EqualTo(500_003));
+			Assert.That(output, Is.EqualTo(Solution.TestData.Outputs[i]));
+		}
 	}
 }

@@ -56,10 +56,9 @@ public class Solution
 	public Output Run(Input input)
 	{
 		List<(int, int, int, int, int, int)> alongX = null!, alongY = null!;
-		var tx = new Thread(() => alongX = Segments(input.Points, p => p.Y, p => p.X, (line, a, b) => (a, line, b, line)));
-		var ty = new Thread(() => alongY = Segments(input.Points, p => p.X, p => p.Y, (line, a, b) => (line, a, line, b)));
-		tx.Start(); ty.Start();
-		tx.Join(); ty.Join();
+		var tx = Task.Run(() => { alongX = Segments(input.Points, p => p.Y, p => p.X, (line, a, b) => (a, line, b, line)); });
+		var ty = Task.Run(() => { alongY = Segments(input.Points, p => p.X, p => p.Y, (line, a, b) => (line, a, line, b)); });
+		Task.WaitAll(tx, ty);
 		var text = Format(alongX) + "\n\n" + Format(alongY);
 		mLog.Info(text);
 		return new Output(text);

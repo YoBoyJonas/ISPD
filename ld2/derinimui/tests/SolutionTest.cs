@@ -4,16 +4,34 @@ using NUnit.Framework;
 
 using Solutions;
 
-[TestFixture]
+
+/// <summary>
+/// Unit test Solution.
+/// </summary>
+[TestFixture] [NonParallelizable]
 public class SolutionTest
 {
-	[Test, Timeout(20_000)]
-	public void RunWaitsForBothThreads()
+	[Test] [NonParallelizable]
+	public void Test()
 	{
-		for (int i = 0; i < Solution.TestData.Inputs.Length; i++) {
-			var output = new Solution().Run(Solution.TestData.Inputs[i]);
+		//pair inputs with outputs
+		var inouts =
+			Solution.TestData.Inputs
+				.Zip(Solution.TestData.Outputs, (inp, outp) => new { inp, outp })
+				.ToList();
 
-			Assert.That(output, Is.EqualTo(Solution.TestData.Outputs[i]));
-		}
+		//test each pair
+		inouts
+			.Select((inout, index) => new { inout, index }).ToList()
+			.ForEach(it => {
+				//run test multiple times, in case the issue only manifests sometimes
+				for( var i = 0; i < 500; i++ )
+				{
+					var output = new Solution().Run(it.inout.inp);
+
+					Assert.That(output, Is.EqualTo(it.inout.outp),
+						$"Actual output is not matching expected output at test data index {it.index}, iteration {i}.");
+				}
+			});
 	}
 }

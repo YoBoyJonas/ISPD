@@ -1,0 +1,2 @@
+* To see test output in console via "dotnet test" run it like this
+    dotnet test -v n

@@ -1,0 +1,23 @@
+* reverse-db.ps1 is a powershell script, on ubuntu linux powershell can be installed via snap
+    https://snapcraft.io/powershell
+
+* reverse-db.ps1 needs dotnet-ef tools installed
+    dotnet tool install --global dotnet-ef
+
+* for reverse-db.ps1 to work the 'db' project must be built at least once to create project files that reversing tool needs
+
+
+* to run DBVS via docker and docker-compose on unix
+    cd mariadb-docker-unix
+    ./start
+
+* to run DBVS via docker on windows, use powershell and docker-compose
+    cd mariadb-docker-win
+    docker-compose up
+
+
+* if everything starts correctly, phpMyAdmin should be accessible on 
+    http://127.0.0.1:8080/
+
+
+* you can also run MariaDB or MySQL by using a virtual machine from course Moodle.

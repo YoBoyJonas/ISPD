@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#chdir to script directory
+cd "${BASH_SOURCE%/*}"
+
+#set environment variables
+source ./setenv
+
+#
+docker compose up

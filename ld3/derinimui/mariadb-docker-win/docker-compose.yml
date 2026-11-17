@@ -1,0 +1,33 @@
+version: "3"
+
+networks:
+  mariadb-win:
+
+services:
+  db:
+    image:
+      "mariadb:focal"
+    networks:
+      - mariadb-win
+    environment:
+      MARIADB_USER: "user"
+      MARIADB_PASSWORD: "user"
+      MARIADB_ROOT_PASSWORD: "root"
+    ports:
+      - "3306:3306/tcp"
+    volumes:
+      - "./data:/var/lib/mysql"
+
+  phpMyAdmin:
+    image:
+      "phpmyadmin:latest"
+    networks:
+      - mariadb-win
+    environment:
+      PMA_USER: "root"
+      PMA_PASSWORD: "root"
+      UPLOAD_LIMIT: 1G
+    ports:
+      - "127.0.0.1:8080:80/tcp"
+    links:
+      - "db:db"

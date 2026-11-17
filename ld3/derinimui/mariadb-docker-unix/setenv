@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#is sourced into other scripts to set environment variables
+
+#current working directory
+export CWD="$(pwd)"
+
+#current user id and group id
+export CUG="$(id -u):$(id -g)"

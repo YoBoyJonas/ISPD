@@ -9,15 +9,17 @@ namespace Org.Ktu.T120B197.DBs.Entities;
 public partial class Author
 {
     [Key]
-    [Column(TypeName = "int(11)")]
+    [Column("id", TypeName = "int(11)")]
     public int id { get; set; }
 
     [Required]
     [StringLength(100)]
+    [Column("name")]
     public string name { get; set; }
 
     [Required]
     [StringLength(50)]
+    [Column("country")]
     public string country { get; set; }
 
     [Column("birth_date", TypeName = "int(11)")]

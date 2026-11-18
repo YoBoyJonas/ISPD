@@ -11,19 +11,19 @@ namespace Org.Ktu.T120B197.DBs.Entities;
 public partial class OrderItem
 {
     [Key]
-    [Column(TypeName = "int(11)")]
+    [Column("id", TypeName = "int(11)")]
     public int id { get; set; }
 
-    [Column(TypeName = "int(11)")]
+    [Column("order_id", TypeName = "int(11)")]
     public int order_id { get; set; }
 
-    [Column(TypeName = "int(11)")]
+    [Column("book_id", TypeName = "int(11)")]
     public int book_id { get; set; }
 
-    [Column(TypeName = "int(11)")]
+    [Column("quantity", TypeName = "int(11)")]
     public int quantity { get; set; }
 
-    [Column(TypeName = "decimal(6,2)")]
+    [Column("unit_price", TypeName = "decimal(6,2)")]
     public decimal unit_price { get; set; }
 
     [ForeignKey("book_id")]

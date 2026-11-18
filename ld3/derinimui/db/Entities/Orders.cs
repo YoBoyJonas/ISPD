@@ -10,16 +10,18 @@ namespace Org.Ktu.T120B197.DBs.Entities;
 public partial class Orders
 {
     [Key]
-    [Column(TypeName = "int(11)")]
+    [Column("id", TypeName = "int(11)")]
     public int id { get; set; }
 
-    [Column(TypeName = "int(11)")]
+    [Column("customer_id", TypeName = "int(11)")]
     public int customer_id { get; set; }
 
+    [Column("order_date")]
     public DateOnly order_date { get; set; }
 
     [Required]
     [StringLength(20)]
+    [Column("status")]
     public string status { get; set; }
 
     [ForeignKey("customer_id")]

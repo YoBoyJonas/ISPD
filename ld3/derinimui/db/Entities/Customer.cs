@@ -10,19 +10,22 @@ namespace Org.Ktu.T120B197.DBs.Entities;
 public partial class Customer
 {
     [Key]
-    [Column(TypeName = "int(11)")]
+    [Column("id", TypeName = "int(11)")]
     public int id { get; set; }
 
     [Required]
     [StringLength(100)]
+    [Column("name")]
     public string name { get; set; }
 
     [Required]
     [StringLength(120)]
+    [Column("email")]
     public string email { get; set; }
 
     [Required]
     [StringLength(50)]
+    [Column("city")]
     public string city { get; set; }
 
     [Column("registration_date")]
